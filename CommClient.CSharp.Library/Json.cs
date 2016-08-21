@@ -12,7 +12,7 @@ namespace CommClient.CSharp.Library
         private static Random random = new Random();
         public string Login(string id, string password)
         {
-
+            return "";
         }
         public string ConnectTest()
         {
