@@ -113,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommClient.CSharp.Library\CommClient.CSharp.Library.csproj">
-      <Project>{456e99af-3339-4e77-bbdd-94a4fa77dde1}</Project>
+      <Project>{0572e224-af6f-4af3-92d6-6aabec16a80e}</Project>
       <Name>CommClient.CSharp.Library</Name>
     </ProjectReference>
   </ItemGroup>

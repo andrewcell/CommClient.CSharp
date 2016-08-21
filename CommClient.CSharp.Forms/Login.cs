@@ -23,9 +23,10 @@ namespace CommClient.CSharp.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             CommClient.CSharp.Library.HTTP http = new Library.HTTP();
-            http.setURL("Asd");
-            http.Login("asd", "asd");
+            http.setURL(textBox3.Text);
+            http.Login(textBox1.Text, Library.sha256.Encrypt(textBox2.Text));
         }
     }
 }
