@@ -23,8 +23,16 @@ namespace CommClient.CSharp.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            Library.HTTP http = new Library.HTTP();
+            Library.Information cost = new Library.Information();
             
-            CommClient.CSharp.Library.HTTP http = new Library.HTTP();
+            string[] ServerStyle = http.getStyle().Split(';');
+            cost.Encrypttype = Convert.ToByte(ServerStyle[0]);
+            cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
+
+            string EncryptedPassword;
+            
             http.setURL(textBox3.Text);
             http.Login(textBox1.Text, Library.sha256.Encrypt(textBox2.Text));
         }

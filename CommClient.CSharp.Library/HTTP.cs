@@ -26,17 +26,9 @@ namespace CommClient.CSharp.Library
                 ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 req = (HttpWebRequest)WebRequest.Create(url);
       
-                req.UserAgent = UA;
-                req.Method = "POST";
-                req.ContentType = "text/plain";
-                req.CookieContainer = cookie;
-                Stream stream = req.GetRequestStream();
-                ASCIIEncoding encoding = new ASCIIEncoding();
-                byte[] byte1 = encoding.GetBytes(a);
-                stream.Write(byte1, 0, byte1.Length);
-                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                string tmp = reader.ReadToEnd();
+
+
+
                 MessageBox.Show(tmp);
                 return true;
             }
@@ -46,6 +38,34 @@ namespace CommClient.CSharp.Library
                 return false;
             }
 
+        }
+        public string getStyle()
+        {
+            req.UserAgent = UA;
+            req.Method = "POST";
+            req.ContentType = "text/plain";
+            req.CookieContainer = cookie;
+            return Send("GetServerStyle");
+
+        }
+        public string Send(string data)
+        {
+            try
+            {
+                Stream stream = req.GetRequestStream();
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                byte[] byte1 = encoding.GetBytes(a);
+                stream.Write(byte1, 0, byte1.Length);
+                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                string tmp = reader.ReadToEnd();
+                return tmp;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+
+            }
         }
         public bool setURL(string URL)
         {
