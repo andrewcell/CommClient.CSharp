@@ -1,2 +1,2 @@
-# CommServer.CSharp
+# CommClient.CSharp
 
