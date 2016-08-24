@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -75,7 +76,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(150, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 72);
+            this.button1.Size = new System.Drawing.Size(88, 46);
             this.button1.TabIndex = 4;
             this.button1.Text = "&Login";
             this.button1.UseVisualStyleBackColor = true;
@@ -117,11 +118,22 @@
             this.textBox3.Size = new System.Drawing.Size(108, 20);
             this.textBox3.TabIndex = 8;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(160, 60);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "SSL/TLS";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(251, 111);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -150,6 +162,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

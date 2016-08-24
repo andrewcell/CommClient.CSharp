@@ -26,15 +26,23 @@ namespace CommClient.CSharp.Forms
 
             Library.HTTP http = new Library.HTTP();
             Library.Information cost = new Library.Information();
-            
+            Library.Encryption encrypt = new Library.Encryption();
+            if (checkBox1.Checked == true)
+            {
+                http.setURL(textBox3.Text, true);
+            }
+            else
+            {
+                http.setURL(textBox3.Text, false);
+            }
             string[] ServerStyle = http.getStyle().Split(';');
             cost.Encrypttype = Convert.ToByte(ServerStyle[0]);
             cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
 
-            string EncryptedPassword;
+            string EncryptedPassword = encrypt.EncryptData(textBox2.Text);
             
-            http.setURL(textBox3.Text);
-            http.Login(textBox1.Text, Library.sha256.Encrypt(textBox2.Text));
+            
+            http.Login(textBox1.Text, EncryptedPassword);
         }
     }
 }

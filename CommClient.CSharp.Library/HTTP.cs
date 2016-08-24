@@ -23,13 +23,13 @@ namespace CommClient.CSharp.Library
 
 
                 var a = XML.ParseXML(username, password);
-                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-                req = (HttpWebRequest)WebRequest.Create(url);
+                
+                
       
 
 
 
-                MessageBox.Show(tmp);
+               MessageBox.Show(Send(a));
                 return true;
             }
             catch (Exception e)
@@ -41,10 +41,13 @@ namespace CommClient.CSharp.Library
         }
         public string getStyle()
         {
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            req = (HttpWebRequest)WebRequest.Create(url);
             req.UserAgent = UA;
             req.Method = "POST";
             req.ContentType = "text/plain";
             req.CookieContainer = cookie;
+            
             return Send("GetServerStyle");
 
         }
@@ -54,7 +57,7 @@ namespace CommClient.CSharp.Library
             {
                 Stream stream = req.GetRequestStream();
                 ASCIIEncoding encoding = new ASCIIEncoding();
-                byte[] byte1 = encoding.GetBytes(a);
+                byte[] byte1 = encoding.GetBytes(data);
                 stream.Write(byte1, 0, byte1.Length);
                 HttpWebResponse response = (HttpWebResponse)req.GetResponse();
                 StreamReader reader = new StreamReader(response.GetResponseStream());
@@ -67,16 +70,25 @@ namespace CommClient.CSharp.Library
 
             }
         }
-        public bool setURL(string URL)
+        public bool setURL(string URL, bool secure)
         {
             if (URL == "")
             {
                 return false;
             }
+            else if (secure == false)
+            {
+                url = new Uri("http://"+URL);
+                return true;
+            }
+            else if (secure == true)
+            {
+                url = new Uri("https://" + URL);
+                return true;
+            }
             else
             {
-              url = new Uri("https://"+URL);
-                return true;
+                return false;
             }
         }
     }
