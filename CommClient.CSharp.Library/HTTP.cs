@@ -47,8 +47,9 @@ namespace CommClient.CSharp.Library
             req.Method = "POST";
             req.ContentType = "text/plain";
             req.CookieContainer = cookie;
+            req.UseDefaultCredentials = true;
             
-            return Send("GetServerStyle");
+            return Send("<data>GetServerStyle</data><EOF>");
 
         }
         public string Send(string data)

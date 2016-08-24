@@ -24,25 +24,32 @@ namespace CommClient.CSharp.Forms
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Library.HTTP http = new Library.HTTP();
-            Library.Information cost = new Library.Information();
-            Library.Encryption encrypt = new Library.Encryption();
-            if (checkBox1.Checked == true)
+            try
             {
-                http.setURL(textBox3.Text, true);
-            }
-            else
-            {
-                http.setURL(textBox3.Text, false);
-            }
-            string[] ServerStyle = http.getStyle().Split(';');
-            cost.Encrypttype = Convert.ToByte(ServerStyle[0]);
-            cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
+                Library.HTTP http = new Library.HTTP();
+                Library.Information cost = new Library.Information();
+                Library.Encryption encrypt = new Library.Encryption();
+                if (checkBox1.Checked == true)
+                {
+                    http.setURL(textBox3.Text, true);
+                }
+                else
+                {
+                    http.setURL(textBox3.Text, false);
+                }
+                string[] ServerStyle = http.getStyle().Split(';');
+                cost.Encrypttype = Convert.ToByte(ServerStyle[0]);
+                cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
 
-            string EncryptedPassword = encrypt.EncryptData(textBox2.Text);
-            
-            
-            http.Login(textBox1.Text, EncryptedPassword);
+                string EncryptedPassword = encrypt.EncryptData(textBox2.Text);
+
+
+                http.Login(textBox1.Text, EncryptedPassword);
+            }
+            catch (Exception ef)
+            {
+                MessageBox.Show(ef.Message);
+            }
         }
     }
 }
