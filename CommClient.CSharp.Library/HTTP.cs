@@ -17,19 +17,22 @@ namespace CommClient.CSharp.Library
         private string UA = "E/0.0.0";
         public bool Login(string username, string password)
         {
-            
+            Information cl = new Information();   
             try
             {
+                var ba = "";
+                if (cl.XMLUse == true)
+                {
+                    ba = XML.ParseXML(username, password);
+                }
+                else
+                {
+                    ba = XML.ParseXML(username, password);
+                }
 
 
-                var a = XML.ParseXML(username, password);
-                
-                
-      
-
-
-
-               MessageBox.Show(Send(a));
+                Send(ba);
+               
                 return true;
             }
             catch (Exception e)
@@ -41,14 +44,6 @@ namespace CommClient.CSharp.Library
         }
         public string getStyle()
         {
-            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-            req = (HttpWebRequest)WebRequest.Create(url);
-            req.UserAgent = UA;
-            req.Method = "POST";
-            req.ContentType = "text/plain";
-            req.CookieContainer = cookie;
-            req.UseDefaultCredentials = true;
-            
             return Send("<data>GetServerStyle</data><EOF>");
 
         }
@@ -56,6 +51,14 @@ namespace CommClient.CSharp.Library
         {
             try
             {
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+                req = (HttpWebRequest)WebRequest.Create(url);
+                req.UserAgent = UA;
+                req.Method = "POST";
+                req.ContentType = "text/plain";
+                req.CookieContainer = cookie;
+                req.UseDefaultCredentials = true;
+                
                 Stream stream = req.GetRequestStream();
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 byte[] byte1 = encoding.GetBytes(data);

@@ -39,7 +39,7 @@ namespace CommClient.CSharp.Forms
                 }
                 string[] ServerStyle = http.getStyle().Split(';');
                 cost.Encrypttype = Convert.ToByte(ServerStyle[0]);
-                cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
+              //  cost.XMLUse = Convert.ToBoolean(ServerStyle[1]);
 
                 string EncryptedPassword = encrypt.EncryptData(textBox2.Text);
 
