@@ -44,7 +44,7 @@ namespace CommClient.CSharp.Library
         }
         public string getStyle()
         {
-            return Send("<data>GetServerStyle</data><EOF>");
+            return Send("<data>GetServerStyle</data>");
 
         }
         public string Send(string data)
@@ -58,7 +58,8 @@ namespace CommClient.CSharp.Library
                 req.ContentType = "text/plain";
                 req.CookieContainer = cookie;
                 req.UseDefaultCredentials = true;
-                
+                req.KeepAlive = false;
+                data = data + "<EOF>";
                 Stream stream = req.GetRequestStream();
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 byte[] byte1 = encoding.GetBytes(data);
